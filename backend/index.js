@@ -13,7 +13,10 @@ import mongoConnect from "./configs/dbConfig.js";
 
 import authRoute from "./routes/auth.route.js";
 
+
 import urlRoute from "./routes/url.route.js";
+
+import { redirectToOriginalUrl } from "./controllers/urlControllers/redirectToOriginalUrl.controller.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -56,13 +59,13 @@ const limiter = rateLimit({
 app.use(limiter); // limit number of req for each client
 
 // -------------------------------- API ROUTES -------------------------------
-import { redirectToOriginalUrl } from "./controllers/url.controller.js";
+
 
 app.use("/api", cors(), urlRoute);
 app.use("/auth", cors(), authRoute);
 
 // for accessing short url
-app.get("/u/:short", redirectToOriginalUrl);
+app.get("/u/:shortUrl", redirectToOriginalUrl);
 
 // goto /doc to see api documentation
 app.get("/", (req, res) => {
