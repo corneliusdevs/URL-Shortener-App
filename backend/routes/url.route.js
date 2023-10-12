@@ -1,11 +1,16 @@
 import Router from "express";
-import { validateUrl } from "../validators/UrlValidators.js";
-import { redirectToOriginalUrl } from "../controllers/urlControllers/redirectToOriginalUrl.controller.js";
-import { deleteUrl } from "../controllers/urlControllers/deleteUrl.controller.js"
-import { getHistory } from "../controllers/urlControllers/getHistory.controller.js"
-import { generateShortUrl } from "../controllers/urlControllers/generateShortUrl.controller.js"
-import { exportGeneratedUrls } from "../controllers/urlControllers/exportGeneratedUrls.controller.js"
+
+import {
+  redirectToOriginalUrl,
+  deleteUrl,
+  getHistory,
+  generateShortUrl,
+  exportGeneratedUrls,
+} from "../controllers/url.controller.js";
+import { validateUrl } from "../validators/urlValidator.js";
+
 import { isApiAuthenticated } from "../middlewares/authMiddleware.js";
+import { validationErrorHandler } from "../middlewares/ValidatorErrorHandler.js";
 
 const router = Router();
 
